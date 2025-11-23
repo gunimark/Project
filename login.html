@@ -42,7 +42,7 @@
                     <label><input type="checkbox">Remember me</label>
                     <a href="#">Forgot Password?</a>
                 </div>
-                <button type="submit" class="btn">Login</button>
+                <button type="submit" class="btn" onecilk="loadUsers()">Login</button>
                 <div class="register">
                     <p>Don't have an account? <a href="sign-up.html">Sign up</a></p>
             </form>
@@ -58,5 +58,15 @@
         <p style="text-align: center; color: white;"> HONG THONG</p>
         <p style="text-align: center; color: white;">ติดต่อ: 123-456-7890 | อีเมล:Project@Gmail.com</p>
     </footer>
+    <script>
+async function loadUsers() {
+  const res = await fetch("http://localhost:3000/users");
+  const data = await res.json();
+
+  document.getElementById("list").innerHTML = data
+    .map(u => `<li>${u.username}</li>`)
+    .join("");
+}
+</script>
 </body>
 </html>
